@@ -16,7 +16,7 @@ class TelaDeFundo(MixIn_Son):
         return TITULOS,imagem
 
 
-    def desenhar_tela(self,janela,tela_de_fundo,bg_imagem,jogador,bloco,offset_x):
+    def desenhar_tela(self,janela,tela_de_fundo,bg_imagem,jogador,inimigo,bloco,offset_x):
         for x in tela_de_fundo:
             janela.blit(bg_imagem,x)
 
@@ -26,6 +26,7 @@ class TelaDeFundo(MixIn_Son):
         
 
         jogador.inicializar_jogador(janela,offset_x)
+        inimigo.inicializar_inimigo(janela,offset_x)
         pygame.display.update() 
 
     def gerar_som(self):

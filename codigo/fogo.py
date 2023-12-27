@@ -2,13 +2,13 @@ from os.path import  join
 import pygame
 from sprite import SpriteJogo
 from objeto import Objeto
-
+from soms import MixIn_Son
 # class Fogo(Objeto,SpriteJogo):
 #     def __init__(self, x, y, largura, altura):
 #         super().__init__(x, y, largura, altura)
 
 
-class Fogo(Objeto,SpriteJogo):
+class Fogo(Objeto,SpriteJogo,MixIn_Son):
     
 
     # def __init__(self, x, y, largura, altura):
@@ -67,3 +67,8 @@ class Fogo(Objeto,SpriteJogo):
         superficie.blit(imagem, (0, 0), retangulo)
         return pygame.transform.scale(superficie, (largura*4, altura*4))
         
+    def gerar_som():
+        audio = pygame.mixer.Sound(join("Soms","dano.mp3"))
+        audio.set_volume(3)
+        audio.play(loops=0)
+        audio.play(loops=0)

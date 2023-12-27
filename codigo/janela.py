@@ -4,6 +4,7 @@ from tela_de_fundo import TelaDeFundo
 from jogador import Jogador
 from bloco import Bloco
 from fogo import Fogo
+from inimigo import Inimigo
 
 class Janela():
     def __init__(self):
@@ -36,7 +37,7 @@ class Janela():
             
         tamanho_bloco = 96
         jogador = Jogador(self.get_largura()//2,100,50,50)
-        # fogo = Fogo(0,self.get_altura()-tamanho_bloco*4,tamanho_bloco,16,32)
+        inimigo = Inimigo(self.get_largura()//2,130,50,50)
         fogo = Fogo(tamanho_bloco, self.get_altura() - tamanho_bloco*2, tamanho_bloco, 96)
         piso = [Bloco(i * tamanho_bloco, self.get_altura() - tamanho_bloco, tamanho_bloco)
              for i in range(-self.get_largura() // tamanho_bloco, (self.get_largura() * 2) // tamanho_bloco)]
@@ -68,8 +69,11 @@ class Janela():
 
 
             jogador.loop_jogador(self.get_fps())
+            inimigo.loop_inimigo(self.get_fps())
+            inimigo.movimentar_inimigo(inimigo,objetos)
             jogador.mapear_teclas(jogador,objetos)
-            tela_de_funfo.desenhar_tela(janela, backgroun, bg_tela, jogador,objetos,offset_x)
+
+            tela_de_funfo.desenhar_tela(janela, backgroun, bg_tela, jogador,inimigo,objetos,offset_x)
 
             if ((jogador.rect.right - offset_x >= self.get_largura()//2) and jogador.x_vel >0 ) or ((jogador.rect.left - offset_x <= self.get_largura()//2) and jogador.x_vel < 0):
                 offset_x += jogador.x_vel

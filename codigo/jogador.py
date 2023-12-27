@@ -3,6 +3,8 @@ from os.path import join
 from sprite import SpriteJogo
 from colicao import Mixin_colicao
 from soms import MixIn_Son
+from fogo import Fogo
+
 
 class Jogador(SpriteJogo,Mixin_colicao,MixIn_Son):
     cor = (255,0,0)
@@ -42,6 +44,7 @@ class Jogador(SpriteJogo,Mixin_colicao,MixIn_Son):
 
         if self.dano:
             self.contador_dano += 1
+            Fogo.gerar_som()
         if self.contador_dano > fps *1:
             self.dano = False
             self.contador_dano = 0
@@ -71,6 +74,7 @@ class Jogador(SpriteJogo,Mixin_colicao,MixIn_Son):
         for obj in checar:
             if obj and obj.nome == "fogo":
                 self.mostra_dano()
+
                 
 
     def pular(self):
@@ -92,5 +96,9 @@ class Jogador(SpriteJogo,Mixin_colicao,MixIn_Son):
     def mostra_dano(self):
         self.dano = True
         self.contador_dano = 0
+
+    
+    
+        
 
     
